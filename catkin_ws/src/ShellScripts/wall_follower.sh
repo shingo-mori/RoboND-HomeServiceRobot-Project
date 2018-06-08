@@ -16,4 +16,4 @@ xterm -e roslaunch turtlebot_rviz_launchers view_navigation.launch &
 sleep 3
 
 # teleop turtlebot using keyboard
-xterm -e rosrun wall_folower wall_follower
+xterm -hold -e rosrun wall_follower wall_follower
