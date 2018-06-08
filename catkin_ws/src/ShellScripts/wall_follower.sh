@@ -6,7 +6,7 @@ xterm -e roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=/home/wor
 sleep 5
 
 # run gmapping to perform SLAM
-xterm -e roslaunch turtlebot_gazebo gmapping_demo.launch &
+xterm -e roslaunch turtlebot_gazebo gmapping_demo.launch custom_gmapping_launch_file:=/home/workspace/RoboND-HomeServiceRobot-Project/catkin_ws/src/LaunchConfig/gmapping.launch.xml &
 
 sleep 3
 
