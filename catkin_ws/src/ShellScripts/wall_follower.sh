@@ -1,12 +1,13 @@
 #!/bin/bash
 
+catkin_ws_dir=/home/shingo/work/RoboND-HomeServiceRobot-Project/catkin_ws
 # deploy turtlebot in the project environment
-xterm -e roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=/home/workspace/RoboND-HomeServiceRobot-Project/catkin_ws/src/World/udacity.world &
+xterm -e roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=${catkin_ws_dir}/src/World/udacity.world &
 
 sleep 5
 
 # run gmapping to perform SLAM
-xterm -e roslaunch turtlebot_gazebo gmapping_demo.launch custom_gmapping_launch_file:=/home/workspace/RoboND-HomeServiceRobot-Project/catkin_ws/src/LaunchConfig/gmapping.launch.xml &
+xterm -e roslaunch turtlebot_gazebo gmapping_demo.launch custom_gmapping_launch_file:=${catkin_ws_dir}/src/LaunchConfig/gmapping.launch.xml &
 
 sleep 3
 
