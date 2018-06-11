@@ -13,7 +13,7 @@ xterm -e roslaunch turtlebot_gazebo amcl_demo.launch map_file:=${catkin_ws_dir}/
 sleep 3
 
 # observe the navigation in Rviz
-xterm -e roslaunch turtlebot_rviz_launchers view_navigation.launch &
+xterm -e roslaunch add_markers view_navigation.launch &
 
 sleep 3
 
