@@ -1,6 +1,6 @@
 #!/bin/bash
 
-catkin_ws_dir=/home/shingo/work/RoboND-HomeServiceRobot-Project/catkin_ws
+catkin_ws_dir=/home/workspace/RoboND-HomeServiceRobot-Project/catkin_ws
 
 # deploy turtlebot in the project environment
 xterm -e roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=${catkin_ws_dir}/src/World/udacity.world &
