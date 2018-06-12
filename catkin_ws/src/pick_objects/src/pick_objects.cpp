@@ -2,6 +2,11 @@
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
 
+static const double PICKUP_POS_X  = 2.3;
+static const double PICKUP_POS_Y  = 8.0;
+static const double DROPOFF_POS_X = 3.0;
+static const double DROPOFF_POS_Y = 0.7;
+
 // Define a client to send goal requests to the move_base server through a
 // SimpleActionClient
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
@@ -18,17 +23,17 @@ int main(int argc, char** argv){
     ROS_INFO("Waiting for the move_base server to come up");
   }
 
-  move_base_msgs::MoveBaseGoal goal1, goal2;
+  move_base_msgs::MoveBaseGoal goal;
+  goal.target_pose.header.frame_id = "map";
 
   // Send the first goal
-  goal1.target_pose.header.frame_id = "map";
-  goal1.target_pose.header.stamp = ros::Time::now();
-  goal1.target_pose.pose.position.x = 2.3;
-  goal1.target_pose.pose.position.y = 8.0;
-  goal1.target_pose.pose.orientation.w = 1.0;
+  goal.target_pose.header.stamp = ros::Time::now();
+  goal.target_pose.pose.position.x = PICKUP_POS_X;
+  goal.target_pose.pose.position.y = PICKUP_POS_Y;
+  goal.target_pose.pose.orientation.w = 1.0;
 
   ROS_INFO("sending the 1st goal");
-  ac.sendGoal(goal1);
+  ac.sendGoal(goal);
   ac.waitForResult();
 
   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
@@ -40,14 +45,13 @@ int main(int argc, char** argv){
   ros::Duration(5.0).sleep();
 
   // Send the second goal
-  goal2.target_pose.header.frame_id = "map";
-  goal2.target_pose.header.stamp = ros::Time::now();
-  goal2.target_pose.pose.position.x = 3.0;
-  goal2.target_pose.pose.position.y = 0.7;
-  goal2.target_pose.pose.orientation.w = 1.0;
+  goal.target_pose.header.stamp = ros::Time::now();
+  goal.target_pose.pose.position.x = DROPOFF_POS_X;
+  goal.target_pose.pose.position.y = DROPOFF_POS_Y;
+  goal.target_pose.pose.orientation.w = 1.0;
 
   ROS_INFO("sending the second goal");
-  ac.sendGoal(goal2);
+  ac.sendGoal(goal);
   ac.waitForResult();
 
   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
